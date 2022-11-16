@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="../js/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .cl{
+        width: 200px;
+        height: 200px;
+        border: 40px solid lawngreen;
+    }
+</style>
+<div class="cl"></div>
+<body>
+    <script>
+        function show()
+        {
+            const xhr=new XMLHttpRequest()
+            xhr.responseText='json'//设置响应体类型
+            xhr.onreadystatechange=function(){
+            if(xhr.status==200&&xhr.readyState==4){
+                // console.log(xhr.response);
+                //手动转换jsno.stringfy=>json.parse
+                document.querySelector('.cl').innerHTML=JSON.parse(xhr.response).name
+                //自动 xhr.responseText='json'
+                // document.querySelector('.cl').innerHTML=xhr.response.name
+                
+            }
+        }
+        xhr.open('GET','http://127.0.0.1:8000/json-sever')
+        xhr.send()
+        }
+        
+        $(document).keyup(function(e){
+            if(e.keyCode===13){
+                show()
+            }
+        })
+    </script>
+</body>
+</html>

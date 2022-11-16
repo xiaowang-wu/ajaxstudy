@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/jquery.min.js"></script>
+    <title>Document</title>
+    
+</head>
+<style>
+    .cl{
+        width: 100px;
+        height: 100px;
+        border: 1px solid pink;
+    }
+</style>
+<body>
+    <button>请求</button>
+    <div class="cl"></div>
+    <script>
+        $('button').on('click',function(){
+            $.getJSON('http://127.0.0.1:9000/jquery-json?callback=?',function(data){
+                $('.cl').html(`
+                名称：${data.name}`)
+            })
+        })
+    </script>
+</body>
+</html>

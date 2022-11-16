@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .cl{
+        width: 200px;
+        height: 200px;
+        border: 40px solid lawngreen;
+    }
+</style>
+<button>请求</button>
+<div class="cl"></div>
+<body>
+    <script>
+       var btn=document.querySelector('button')
+       let issending=false
+       let xhr=null
+       btn.onclick=function(){
+        if(issending) xhr.abort()//如果正在发送则取消 创建新的请求
+            xhr=new XMLHttpRequest()
+            issending=true
+            xhr.open('GET','http://127.0.0.1:8000/deplay')
+            xhr.send()
+            xhr.onreadystatechange=function(){
+            if(xhr.readyState==4){
+                issending=false
+            }
+        }
+       }
+        
+    </script>
+</body>
+</html>

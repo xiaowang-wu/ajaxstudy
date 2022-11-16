@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .cl{
+            width: 100px;
+            height: 100px;
+            border: 50px solid pink;
+        }
+    </style>
+    <div class="cl"></div>
+    <button>请求</button>
+    <script>
+        function show(){
+            const xhr=new XMLHttpRequest()
+            xhr.onreadystatechange=function(){
+                if(xhr.status==200&&xhr.readyState==4){
+                    document.querySelector('.cl').innerHTML=xhr.response
+                }
+            }
+            xhr.open('POST','http://127.0.0.1:8000/sever')
+            //添加参数
+            xhr.setRequestHeader('Context','application/x-www-form-urlencoded')//设置请求头 第一个参数请求头名 第二个参数 请求头值
+            xhr.setRequestHeader('name','val')
+            xhr.send('a=100&b=200')
+        }
+        $('button').on('click',function(){
+            show()
+        })
+    </script>
+</body>
+</html>

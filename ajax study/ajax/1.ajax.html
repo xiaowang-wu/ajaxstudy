@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="cl">wqe</div>
+    <button>请求</button>
+    <script>
+        function show()
+        {
+        var  val=new XMLHttpRequest()
+        val.onreadystatechange=function(){
+        if(val.readyState==4&&val.status==200)
+        {
+           document.querySelector('.cl').innerHTML=val.responseText
+        }
+        }
+        val.open('GET','./1.txt',true)
+        val.send()
+        }
+        $('button').on('click',function(){
+            show()  
+        })
+        
+    </script>
+</body>
+</html>

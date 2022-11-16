@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .cl{
+        width: 200px;
+        height: 200px;
+        border: 40px solid lawngreen;
+    }
+</style>
+<button>请求</button>
+<div class="cl"></div>
+<body>
+    <script>
+        function show(){
+            const xhr=new XMLHttpRequest()
+            //超时响应设置
+            xhr.timeout=2000
+            
+            xhr.onreadystatechange=function(){
+                if(xhr.status==200&&xhr.readyState==4)
+                {
+                    document.querySelector('.cl').innerHTML=xhr.response
+                }
+            }
+            xhr.open('GET','http://127.0.0.1:8000/ie?t='+Date.now())//第一次服务器内容，再次读取为缓存 要想要同步加一个事件戳
+            xhr.send()
+        }
+        $('button').on('click',function(){
+            show()
+        })
+    </script>
+</body>
+</html>

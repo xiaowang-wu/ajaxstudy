@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./axios.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button>get</button>
+    <button>post</button>
+    <button>all</button>
+    <script>
+        const btns=document.querySelectorAll('button')
+        btns[0].onclick=function(){
+            axios.get(
+            'http://127.0.0.1:8000/axios',
+            {
+            
+           Headers:{
+            w:100,
+            h:100
+           }
+                
+            }).then((value) => {
+                console.log(value);
+            })//此处vlue包括请求头 ，状态，请求体....
+        }
+        btns[2].onclick=function(){
+            axios({
+                method:'GET',
+                url:'http://127.0.0.1:8000/axios',
+                params:{
+                    vip:10,
+                    leve:30
+                },
+                Headers:{
+                    a:100,
+                    b:200
+                },
+                // data:{
+                //     use:'dasd'
+
+                // }
+            }).then(val=>{
+                console.log(val);
+            })
+        }
+    </script>
+</body>
+</html>
